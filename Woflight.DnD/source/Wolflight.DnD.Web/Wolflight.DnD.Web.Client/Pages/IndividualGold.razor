@@ -1,0 +1,47 @@
+﻿@page "/individual-gold"
+@rendermode InteractiveAuto
+
+<PageTitle>Individual Gold</PageTitle>
+
+<h3>IndividualGold</h3>
+
+<InputSelect @bind-Value="@ChallengeRating">
+    @foreach (Encounters.Enums.ChallengeRating challengeRating in Enum.GetValues<Encounters.Enums.ChallengeRating>())
+    {
+        <option value="@challengeRating">@challengeRating</option>
+    }
+
+</InputSelect>
+
+<br />
+
+<button class="btn btn-primary" @onclick="GenerateGold">Generate!</button>
+
+<p>
+    <table>
+        <tr>
+            <td>Gold</td>
+            <td id="coin-gold">@Current.Gold</td>
+        </tr>
+        <tr>
+            <td>Platinum</td>
+            <td id="coin-platinum">@Current.Platinum</td>
+        </tr>
+    </table>
+
+</p>
+
+
+
+@code {
+    private Wolflight.DnD.Treasure.Types.Coins Current = new();
+    private Encounters.Enums.ChallengeRating? ChallengeRating = null;
+
+    private void GenerateGold()
+    {                
+        if (ChallengeRating.HasValue)
+        {
+            Current = Wolflight.DnD.Treasure.Providers.TreasureGenerator.IndividualTreasure(ChallengeRating.Value);
+        }
+    }
+}

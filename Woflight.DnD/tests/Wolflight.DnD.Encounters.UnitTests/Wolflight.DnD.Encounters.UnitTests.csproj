@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Wolflight.DnD.Encounters</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Wolflight.DnD.Encounters\Wolflight.DnD.Encounters.csproj" />
+  </ItemGroup>
+
+</Project>

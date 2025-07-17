@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Wolflight.DnD.Treasure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Wolflight.DnD.Treasure\Wolflight.DnD.Treasure.csproj" />
+  </ItemGroup>
+
+</Project>

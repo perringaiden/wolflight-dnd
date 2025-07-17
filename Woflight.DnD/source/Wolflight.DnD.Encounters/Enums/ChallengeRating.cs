@@ -1,0 +1,30 @@
+﻿namespace Wolflight.DnD.Encounters.Enums
+{
+    public enum ChallengeRating
+    {
+        Zero,
+        Eighth,
+        Quarter,
+        Half,
+        One,
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Eleven,
+        Twelve,
+        Thirteen,
+        Fourteen,
+        Fifteen,
+        Sixteen,
+        Seventeen,
+        Eighteen,
+        Nineteen,
+        Twenty
+    }
+}

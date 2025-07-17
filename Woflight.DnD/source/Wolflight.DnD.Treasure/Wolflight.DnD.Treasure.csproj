@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Wolflight.Utilities.Collections" />
+    <PackageReference Include="Wolflight.Utilities.Exceptions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Wolflight.DnD.Treasure.UnitTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wolflight.DnD.Encounters\Wolflight.DnD.Encounters.csproj" />
+  </ItemGroup>
+
+  
+  
+</Project>

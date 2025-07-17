@@ -1,0 +1,103 @@
+﻿@page "/encounter"
+@rendermode InteractiveAuto
+
+<PageTitle>Encounter Calculator</PageTitle>
+
+<h3>Encounter Calculator</h3>
+<table>
+    <tr>
+        <td>
+            <InputSelect @bind-Value="@selectedCombatant">
+                @foreach (KeyValuePair<int, string> valuePair in Wolflight.DnD.Encounters.Providers.MonsterProvider.GetMonsterNames())
+                {
+                    <option value="@valuePair.Key">@valuePair.Value</option>
+                }
+            </InputSelect>
+        </td>
+        <td>
+            <button class="btn btn-primary" @onclick="AddMonster">Add Monster</button>
+        </td>
+    </tr>
+    <tr>
+    <td align="right">
+    <InputSelect @bind-Value="@selectedPlayerLevel">
+        @for (int i = 1; i < 17; i++)
+        {
+            <option value="@i">@i</option>
+        }
+    </InputSelect>    
+    </td>
+    <td>
+    <button class="btn btn-primary" @onclick="AddPlayer">Add Player Level</button>
+</td>
+    </tr>
+
+</table>
+
+<p>
+    Current Difficulty: @current.CurrentDifficulty<br />
+    Current XP: @current.CurrentXP<br />
+    <br />
+    Low XP: @current.LowDifficultyXP<br />
+    Moderate XP: @current.ModerateDifficultyXP<br />
+    High XP: @current.HighDifficultyXP<br />
+</p>
+
+<p>
+    <table>
+        <tr><td colspan="2">Player Levels</td></tr>
+        @foreach (int level in current.Levels)
+        {
+            <tr>
+                <td>Level @level Player</td>
+                <td><button class="btn btn-primary" @onclick="() => RemovePlayer(level)">❌</button></td>
+            </tr>
+        }
+    </table>
+</p>
+
+<p>
+    <table>
+        <tr>
+            <td colspan="2">Enemies</td>
+        </tr>
+        @foreach (Encounters.Types.Combatant combatant in current.Enemies)
+        {
+            <tr>
+                <td>@combatant.Name (@combatant.XP)</td>
+                <td><button class="btn btn-primary" @onclick="() => RemoveCombatant(combatant.ID)">❌</button></td>
+            </tr>
+        }
+    </table>
+</p>
+
+@code {
+    private Wolflight.DnD.Encounters.Types.Encounter current = new();
+    private int selectedCombatant = 5194864; // Awakened Aarakocra
+    private int selectedPlayerLevel = 1;
+
+
+    private void AddMonster()
+    {
+        if (selectedCombatant != 0)
+        {
+            current.AddEnemy(Encounters.Providers.MonsterProvider.GetMonsterByID(selectedCombatant));
+        }
+    }
+
+    private void AddPlayer()
+    {
+        current.AddLevel(selectedPlayerLevel);
+    }
+
+    private void RemovePlayer(int level)
+    {
+        current.RemoveLevel(level);
+    }
+
+    private void RemoveCombatant(int monsterID)
+    {
+        current.RemoveEnemy(monsterID);
+    }
+
+}
